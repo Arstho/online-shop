@@ -9,21 +9,27 @@ import Success from "./pages/Success/Success";
 import ShopPage from "./pages/ShopPage/ShopPage";
 import OnePage from "./pages/OnePage/OnePage";
 import AdminPage from "./pages/AdminPage/AdminPage";
+import { Register } from "./pages/Register/Register";
+import { Login } from "./pages/Login/Login";
+import Checkout from "./pages/CheckoutPage/СheckoutPage";
 
 function App() {
   return (
-    <div className='App'>
-      <Header/>
+    <div className="App">
+      <Header />
       <Routes>
-        <Route path='/cart' element={<Cart />} />
-        <Route path='/contact' element={<ContactPage />} />
-        <Route path='/' element={<Home />} />
-        <Route path='/success' element={<Success/>}/>
-        <Route path='/shop' element={<ShopPage />} />
-        <Route path='/el' element={<OnePage />} />
-        <Route path='/admin' element={<AdminPage />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/contact" element={<ContactPage />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/success" element={<Success />} />
+        <Route path="/shop" element={<ShopPage />} />
+        <Route path="/el" element={<OnePage />} />
+        <Route path="/admin" element={<AdminPage />} />
+        <Route path="register" element={<Register />} />
+        <Route path="/checkout" element={<Checkout />} />
+        <Route path="login" element={<Login />} />
       </Routes>
-      <Footer/>
+      <Footer />
     </div>
   );
 }
