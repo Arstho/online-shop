@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   categories: [],
+  currentCategory: {},
 };
 
 export const fetchCategories = createAsyncThunk(
@@ -9,6 +10,18 @@ export const fetchCategories = createAsyncThunk(
   async (_, thunkApi) => {
     try {
       const res = await fetch("http://localhost:4000/category");
+      return res.json();
+    } catch (err) {
+      return thunkApi.rejectWithValue(err);
+    }
+  }
+);
+
+export const fetchCategoryById = createAsyncThunk(
+  "fetch/categoryById",
+  async (id, thunkApi) => {
+    try {
+      const res = await fetch(`http://localhost:4000/category/${id}`);
       return res.json();
     } catch (err) {
       return thunkApi.rejectWithValue(err);
@@ -34,6 +47,44 @@ export const addCategory = createAsyncThunk(
   }
 );
 
+export const patchCategory = createAsyncThunk(
+  "patch/category",
+  async ({ id, category }, thunkApi) => {
+    try {
+      const patchedCategory = await fetch(
+        `http://localhost:4000/category/${id}`,
+        {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            category,
+          }),
+        }
+      );
+      return patchedCategory.json();
+    } catch (err) {
+      return thunkApi.rejectWithValue(err);
+    }
+  }
+);
+
+export const deleteCategory = createAsyncThunk(
+  "delete/category",
+  async (id, thunkApi) => {
+    try {
+      const deletedCategory = await fetch(
+        `http://localhost:4000/category/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
+      return deletedCategory.json();
+    } catch (err) {
+      return thunkApi.rejectWithValue(err);
+    }
+  }
+);
+
 export const categoriesSlice = createSlice({
   name: "categories",
   initialState,
@@ -43,8 +94,24 @@ export const categoriesSlice = createSlice({
       .addCase(fetchCategories.fulfilled, (state, action) => {
         state.categories = action.payload;
       })
+      .addCase(fetchCategoryById.fulfilled, (state, action) => {
+        state.currentCategory = action.payload;
+      })
       .addCase(addCategory.fulfilled, (state, action) => {
         state.categories.push(action.payload);
+      })
+      .addCase(patchCategory.fulfilled, (state, action) => {
+        state.categories = state.categories.map((category) => {
+          if (category._id === action.payload._id) {
+            category = action.payload;
+          }
+          return category;
+        });
+      })
+      .addCase(deleteCategory.fulfilled, (state, action) => {
+        state.categories = state.categories.filter(
+          (category) => category._id !== action.payload._id
+        );
       });
   },
 });
