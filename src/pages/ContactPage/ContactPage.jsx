@@ -6,7 +6,7 @@ const ContactPage = () => {
     <div className={styles.content}>
       <div className={styles.wrapper}>
         <div className={styles.titleBlock}>
-          <h1 className={styles.title}>Контакты</h1>
+          <div className={styles.title}>Контакты</div>
           <div className={styles.links}>
             <a href='' className={styles.link}>
               Главная
