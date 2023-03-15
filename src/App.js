@@ -14,6 +14,9 @@ import { Login } from "./pages/Login/Login";
 import Checkout from "./pages/CheckoutPage/СheckoutPage";
 import { useSelector } from "react-redux";
 
+import { ToastContainer, Zoom } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+
 function App() {
   const token = useSelector((state) => state.authReducer.token);
 
@@ -28,7 +31,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/success" element={<Success />} />
             <Route path="/shop" element={<ShopPage />} />
-            <Route path="/el" element={<OnePage />} />
+            <Route path="/:id" element={<OnePage />} />
             <Route path="/register" element={<Navigate to="/" />} />
             <Route path="/login" element={<Navigate to="/" />} />
             <Route path="/checkout" element={<Checkout />} />
@@ -48,6 +51,7 @@ function App() {
             <Route path="/admin" element={<AdminPage />} />
           </Routes>
         )}
+      <ToastContainer position='top-right' transition={Zoom} />
       </div>
       <Footer />
     </div>

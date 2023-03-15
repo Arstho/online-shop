@@ -45,7 +45,6 @@ const OnePage = () => {
             ))}
           </ul>
           <div className={styles.amountAndAdd}>
-            <div className={styles.amount}>1</div>
             <button className={styles.addToCart}>Добавить в корзину</button>
           </div>
         </div>
