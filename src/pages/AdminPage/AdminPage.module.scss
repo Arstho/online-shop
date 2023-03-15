@@ -1,0 +1,11 @@
+.adminPage {
+    position: absolute;
+    top: 100px;
+    padding-bottom: 100px;
+    .addCategoryForm {
+        .adminAction button{
+            padding: 10px 15px;
+            font-size: 17px;
+        }
+    }
+}
