@@ -1,13 +1,13 @@
 .header {
   padding-top: 15px;
+  margin-bottom: 15px;
 }
-.header_wrapper{
+.header_wrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 1110px;
-  margin:0  auto;
-
+  margin: 0 auto;
 }
 .headerLogo a {
   text-decoration: none;
@@ -40,8 +40,8 @@
   letter-spacing: 0.02em;
   color: #000000;
 }
-.headerLick{
-    /* width: 270px; */
+.headerLick {
+  /* width: 270px; */
 }
 .headersContact {
   display: flex;
@@ -57,10 +57,10 @@
   letter-spacing: 0.02em;
   color: #000000;
 }
-.headerBasket{
-    margin-left: 67px;
+.headerBasket {
+  margin-left: 67px;
 }
-.active{
+.active {
   text-decoration: none;
   margin-left: 45px;
   width: 59px;
@@ -72,17 +72,16 @@
   line-height: 140%;
   letter-spacing: 0.02em;
   color: #6e9c9f;
-
 }
-.auth{
+.auth {
   display: flex;
   align-items: center;
   justify-content: center;
   margin-left: 10px;
   width: 90px;
   height: 35px;
-  border: 1px solid #6E9C9F;
+  border: 1px solid #6e9c9f;
   background-color: #ffffff;
   text-decoration: none;
-  color: #6E9C9F ;
+  color: #6e9c9f;
 }
