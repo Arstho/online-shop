@@ -16,12 +16,12 @@ const Header = () => {
                 <NavLink className={({ isActive }) => isActive ? styles.active : styles.nav_link} to={'/'}>Главная</NavLink>
                 <NavLink className={({ isActive }) => isActive ? styles.active : styles.nav_link} to={'/shop'}>Магазин</NavLink>
                 <NavLink className={({ isActive }) => isActive ? styles.active : styles.nav_link} to={'/'}>О бренде</NavLink>
-                <NavLink  className={({ isActive }) => isActive ? styles.active : styles.nav_link}to={'/contact'}>Контакты</NavLink>
+                <NavLink  className={({ isActive }) => isActive ? styles.active : styles.nav_link}to={'/contact'}>Контакты</NavLink>  
             </div>
             <div className={styles.headersContact}>
                 <img src={vector2} alt="phone" />
                 <div className={styles.headerNumber}>+7 (495) 823-54-12</div>
-                <div className={styles.headerBasket}><Link to={'/cart'}><img src={basket} alt="" /></Link></div>
+                <div className={styles.headerBasket}><Link to={'/cart'}><img src={basket} alt="" /></Link></div>  
                 <Link className={styles.auth} to={'/login'}>Войти</Link>
             </div>
         </div>

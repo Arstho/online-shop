@@ -4,7 +4,7 @@ import vector1 from "..//..//assets/Vector.png";
 import logoInstagram from "../../assets/logoInstagram.png";
 import logoFacebook from "../../assets/logoFacebook.png";
 import logoTwitter from "../../assets/logoTwitter.png";
-import logovisa from "../../assets/logovisa-mastercard.png";  
+import logovisa from "../../assets/logovisa-mastercard.png";    
 import { NavLink } from "react-router-dom";
 
 const Footer = () => {
@@ -12,7 +12,7 @@ const Footer = () => {
     <div className={styles.footer}>
       <div className={styles.footerFirst}>
         <div className={styles.footerLogo}>  
-          <img src={vector1} alt="vector" />
+          <img src={vector1} alt="vector" />   
           <a href="#">Womazing</a>
         </div>
         <div className={styles.footerLick}>   
