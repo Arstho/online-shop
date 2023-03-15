@@ -45,7 +45,7 @@ const Header = () => {
           </div>
           <Link className={styles.auth} to={"/login"}>
             Войти
-          </Link>
+          </Link> 
         </div>
       </div>
     </div>
