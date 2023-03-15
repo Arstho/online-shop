@@ -71,7 +71,6 @@
 }
 .feedback {
   margin-top: 130px;
-  
 }
 .feedback_title {
   font-family: "Raleway";
@@ -94,6 +93,8 @@
   color: #868686;
   border: none;
   border-bottom: 1px solid;
+  background: white;
+  border-radius: 0px;
 }
 .feedback_form {
   display: flex;
