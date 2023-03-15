@@ -17,40 +17,37 @@ import { useSelector } from "react-redux";
 function App() {
   const token = useSelector((state) => state.authReducer.token);
 
-  if (!token) {
-    return (
-      <div className='App'>
-        <Header />
-        <Routes>
-          <Route path='/cart' element={<Cart />} />
-          <Route path='/contact' element={<ContactPage />} />
-          <Route path='/' element={<Home />} />
-          <Route path='/success' element={<Success />} />
-          <Route path='/shop' element={<ShopPage />} />
-          <Route path='/el' element={<OnePage />} />
-          <Route path='/register' element={<Register />} />
-          <Route path='/login' element={<Login />} />
-        </Routes>
-        <Footer />
-      </div>
-    );
-  }
   return (
-    <div className='App'>
+    <div className="App">
       <Header />
-      <div className='App_wrapper'>
-        <Routes>
-          <Route path='/cart' element={<Cart />} />
-          <Route path='/contact' element={<ContactPage />} />
-          <Route path='/' element={<Home />} />
-          <Route path='/success' element={<Success />} />
-          <Route path='/shop' element={<ShopPage />} />
-          <Route path='/el' element={<OnePage />} />
-          <Route path='/register' element={<Navigate to='/' />} />
-          <Route path='/login' element={<Navigate to='/' />} />
-          <Route path='/checkout' element={<Checkout />} />
-          {!token }
-        </Routes>
+      <div className="App_wrapper">
+        {token ? (
+          <Routes>
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/success" element={<Success />} />
+            <Route path="/shop" element={<ShopPage />} />
+            <Route path="/el" element={<OnePage />} />
+            <Route path="/register" element={<Navigate to="/" />} />
+            <Route path="/login" element={<Navigate to="/" />} />
+            <Route path="/checkout" element={<Checkout />} />
+            <Route path="/admin" element={<AdminPage />} />
+          </Routes>
+        ) : (
+          <Routes>
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/success" element={<Success />} />
+            <Route path="/shop" element={<ShopPage />} />
+            <Route path="/el" element={<OnePage />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/checkout" element={<Checkout />} />
+            <Route path="/admin" element={<AdminPage />} />
+          </Routes>
+        )}
       </div>
       <Footer />
     </div>

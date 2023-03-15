@@ -51,7 +51,7 @@ const updateClotnes = createAsyncThunk(
   "updete/clotnes",
   async (id, thunkAPI) => {
     try {
-      const res = await fetch(`http://localhost:4000/clotnes/${id}`, {  
+      const res = await fetch(`http://localhost:4000/clotnes/${id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -75,14 +75,15 @@ export const clotnesSlice = createSlice({
     });
 
     builder.addCase(addClotnes.fulfilled, (state, action) => {
-      state.clotnes = push(action.payload);
+      state.clotnes.push(action.payload);
     });
 
-    builder.addCase(deleteClotnes.fulfilled, (state,action)=>{
-        state.clotnes = state.clotnes.filter((cart) => cart._id !== action.payload)   
-    })
-
+    builder.addCase(deleteClotnes.fulfilled, (state, action) => {
+      state.clotnes = state.clotnes.filter(
+        (cart) => cart._id !== action.payload
+      );
+    });
   },
 });
 
-export default clotnesSlice.reducer;  
+export default clotnesSlice.reducer;
