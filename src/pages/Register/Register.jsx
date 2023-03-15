@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate  } from "react-router-dom";
 import { authSignUp } from "../../features/authSlice";
+import { toast } from 'react-toastify'
 import styles from "./Register.module.css";
 
 export const Register = () => {
@@ -11,6 +12,13 @@ export const Register = () => {
   const dispatch = useDispatch();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate()
+
+  React.useEffect(() => {
+    if (message) toast(message)
+    if (token) navigate('/')
+  }, [message, token, navigate])
+
   const handleFormSubmit = (e) => {
     e.preventDefault();
     dispatch(authSignUp({ username, password }));
