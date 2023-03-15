@@ -10,7 +10,7 @@ label {
   opacity: 0.5;
 }
 
-input {
+form input {
   margin: 1rem 0;
   color: black;
   width: 100%;

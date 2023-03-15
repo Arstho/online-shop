@@ -4,7 +4,7 @@ form {
   height: 15rem;
 }
 
-h1 {
+form h1 {
   /* color: white; */
   text-align: center;
 }
@@ -14,7 +14,7 @@ label {
   opacity: 0.5;
 }
 
-input {
+form input {
   margin: 1rem 0;
   color: black;
   width: 100%;
