@@ -1,8 +1,10 @@
-import { configureStore } from '@reduxjs/toolkit'
 import { clotnesSlice } from '../features/shopSlice'
+import { configureStore } from "@reduxjs/toolkit";
+import categoriesSlice from "../features/categorySlice";
 
-export const store = configureStore({     
+export const store = configureStore({
   reducer: {
-    clotnesSlice
+    categories: categoriesSlice,
+    clotnes: clotnesSlice
   },
-})    
+});
