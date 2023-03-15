@@ -8,8 +8,9 @@ import Home from "./pages/Home/Home";
 import Success from "./pages/Success/Success";
 import ShopPage from "./pages/ShopPage/ShopPage";
 import OnePage from "./pages/OnePage/OnePage";
-import { Register } from './pages/Register/Register'
-import { Login } from './pages/Login/Login'
+import AdminPage from "./pages/AdminPage/AdminPage";
+import { Register } from "./pages/Register/Register";
+import { Login } from "./pages/Login/Login";
 import Checkout from "./pages/CheckoutPage/СheckoutPage";
 
 function App() {
