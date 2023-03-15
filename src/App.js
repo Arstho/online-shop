@@ -15,21 +15,22 @@ import Checkout from "./pages/CheckoutPage/СheckoutPage";
 
 function App() {
   return (
-    <div className="App">
-      <Header />
+    <div className='App'>
+      <Header/>
+      <div className="App_wrapper">
       <Routes>
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/contact" element={<ContactPage />} />
-        <Route path="/" element={<Home />} />
-        <Route path="/success" element={<Success />} />
-        <Route path="/shop" element={<ShopPage />} />
-        <Route path="/el" element={<OnePage />} />
-        <Route path="/admin" element={<AdminPage />} />
-        <Route path="register" element={<Register />} />
-        <Route path="/checkout" element={<Checkout />} />
-        <Route path="login" element={<Login />} />
+        <Route path='/cart' element={<Cart />} />
+        <Route path='/contact' element={<ContactPage />} />  
+        <Route path='/' element={<Home />} />
+        <Route path='/success' element={<Success/>}/>
+        <Route path='/shop' element={<ShopPage />} />
+        <Route path='/el' element={<OnePage />} />
+        <Route path='register' element={<Register />} />
+        <Route path='/checkout' element={<Checkout />} />    
+        <Route path='login' element={<Login />} />
       </Routes>
-      <Footer />
+      </div>
+      <Footer/>
     </div>
   );
 }

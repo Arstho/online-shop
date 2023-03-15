@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styles from "./cart.module.css";
 
 const Cart = () => {
@@ -9,7 +10,7 @@ const Cart = () => {
         <div className={styles.titleP}>
           <p>Главная </p>
           <p> — </p>
-          <p className={styles.fontP}> Корзина</p>
+          <p className={styles.fontP}> Корзина</p>  
         </div>
       </div>
       <table>
@@ -47,7 +48,7 @@ const Cart = () => {
       </div>
       <div className={styles.order}>
         <button className={styles.btnTotal}>Итого: 124$</button>
-        <button className={styles.btnOrder}>Оформить заказ</button>
+        <Link className={styles.btnOrder} to={'/checkout'}>Оформить заказ</Link>
       </div>
       
     </div>
