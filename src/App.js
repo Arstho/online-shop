@@ -10,6 +10,7 @@ import ShopPage from "./pages/ShopPage/ShopPage";
 import OnePage from "./pages/OnePage/OnePage";
 import { Register } from "./pages/Register/Register";
 import { Login } from "./pages/Login/Login";
+import Checkout from "./pages/CheckoutPage/СheckoutPage";
 import { useSelector } from "react-redux";
 
 function App() {
@@ -26,8 +27,8 @@ function App() {
           <Route path='/success' element={<Success />} />
           <Route path='/shop' element={<ShopPage />} />
           <Route path='/el' element={<OnePage />} />
-          <Route path='register' element={<Register />} />
-          <Route path='login' element={<Login />} />
+          <Route path='/register' element={<Register />} />
+          <Route path='/login' element={<Login />} />
         </Routes>
         <Footer />
       </div>
@@ -36,16 +37,20 @@ function App() {
   return (
     <div className='App'>
       <Header />
-      <Routes>
-        <Route path='/cart' element={<Cart />} />
-        <Route path='/contact' element={<ContactPage />} />
-        <Route path='/' element={<Home />} />
-        <Route path='/success' element={<Success />} />
-        <Route path='/shop' element={<ShopPage />} />
-        <Route path='/el' element={<OnePage />} />
-        <Route path='register' element={<Navigate to='/' />} />
-        <Route path='login' element={<Navigate to='/' />} />
-      </Routes>
+      <div className='App_wrapper'>
+        <Routes>
+          <Route path='/cart' element={<Cart />} />
+          <Route path='/contact' element={<ContactPage />} />
+          <Route path='/' element={<Home />} />
+          <Route path='/success' element={<Success />} />
+          <Route path='/shop' element={<ShopPage />} />
+          <Route path='/el' element={<OnePage />} />
+          <Route path='/register' element={<Navigate to='/' />} />
+          <Route path='/login' element={<Navigate to='/' />} />
+          <Route path='/checkout' element={<Checkout />} />
+          {!token }
+        </Routes>
+      </div>
       <Footer />
     </div>
   );

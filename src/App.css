@@ -5,4 +5,12 @@
   font-family: 'Raleway', sans-serif;
   text-decoration: none;
   list-style-type: none;
+
+}
+.App{
+
+}
+.App_wrapper{
+  max-width: 1110px;
+  margin: 0 auto;
 }
