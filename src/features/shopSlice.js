@@ -4,7 +4,7 @@ const initialState = {
   clotnes: [],
 };
 
-const fetchClotnes = createAsyncThunk("fetch/shops", async (_, thunkAPI) => {
+export const fetchClotnes = createAsyncThunk("fetch/shops", async (_, thunkAPI) => {
   try {
     const res = await fetch("http://localhost:4000/clotnes");
     const clotnes = res.json();
@@ -14,26 +14,32 @@ const fetchClotnes = createAsyncThunk("fetch/shops", async (_, thunkAPI) => {
   }
 });
 
-const addClotnes = createAsyncThunk(
+export const addClotnes = createAsyncThunk(
   "add/clotnes",
-  async (clotnes, thunkAPI) => {
+  async ({ name, image, category, sizes, color, price }, thunkAPI) => {
     try {
-      const res = await fetch("http://localhost:4000/clotnes", {
+      const addedCloth = await fetch("http://localhost:4000/clothes", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(clotnes),
+        body: JSON.stringify({
+          name,
+          image,
+          category,
+          sizes,
+          color,
+          price,
+        }),
       });
-      const clotnes = res.json();
-      return clotnes;
+      return addedCloth.json();
     } catch (error) {
       return error;
     }
   }
 );
 
-const deleteClotnes = createAsyncThunk(
+export const deleteClotnes = createAsyncThunk(
   "delete/clotnes",
   async (id, thunkAPI) => {
     try {
@@ -47,7 +53,7 @@ const deleteClotnes = createAsyncThunk(
   }
 );
 
-const updateClotnes = createAsyncThunk(
+export const updateClotnes = createAsyncThunk(
   "updete/clotnes",
   async (id, thunkAPI) => {
     try {
@@ -76,6 +82,7 @@ export const clotnesSlice = createSlice({
 
     builder.addCase(addClotnes.fulfilled, (state, action) => {
       state.clotnes.push(action.payload);
+      console.log(action.payload);
     });
 
     builder.addCase(deleteClotnes.fulfilled, (state, action) => {
