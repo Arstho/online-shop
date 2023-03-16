@@ -4,7 +4,7 @@ const initialState = {
   clothes: [],
 };
 
-const fetchClothes = createAsyncThunk("fetch/shops", async (_, thunkAPI) => {
+export const fetchClothes = createAsyncThunk("fetch/shops", async (_, thunkAPI) => {
   try {
     const res = await fetch("http://localhost:4000/clothes");
     const clothes = res.json();
@@ -14,26 +14,33 @@ const fetchClothes = createAsyncThunk("fetch/shops", async (_, thunkAPI) => {
   }
 });
 
-const addClothes = createAsyncThunk(
-  "add/clothes",
-  async (clothes, thunkAPI) => {
+export const addClotnes = createAsyncThunk(
+  "add/clotnes",
+  async ({ name, image, category, sizes, color, price }, thunkAPI) => {
     try {
-      const res = await fetch("http://localhost:4000/clothes", {
+      const addedCloth = await fetch("http://localhost:4000/clothes", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({clothes}),
+        body: JSON.stringify({
+          name,
+          image,
+          category,
+          sizes,
+          color,
+          price,
+        }),
       });
-      return res.json();
+      return addedCloth.json();
     } catch (error) {
       return error;
     }
   }
 );
 
-const deleteClothes = createAsyncThunk(
-  "delete/clothes",
+export const deleteClothes = createAsyncThunk(
+  "delete/clotnes",
   async (id, thunkAPI) => {
     try {
       const res = await fetch(`http://localhost:4000/clothes/${id}`, {
@@ -46,8 +53,8 @@ const deleteClothes = createAsyncThunk(
   }
 );
 
-const updateClothes = createAsyncThunk(
-  "updete/clothes",
+export const updateClotnes = createAsyncThunk(
+  "updete/clotnes",
   async (id, thunkAPI) => {
     try {
       const res = await fetch(`http://localhost:4000/clothes/${id}`, {
@@ -73,7 +80,7 @@ export const clothesSlice = createSlice({
       state.clothes = action.payload;
     });
 
-    builder.addCase(addClothes.fulfilled, (state, action) => {
+    builder.addCase(addClotnes.fulfilled, (state, action) => {
       state.clothes.push(action.payload);
     });
 

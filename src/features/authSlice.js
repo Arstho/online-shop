@@ -17,7 +17,7 @@ function parseJwt(token) {
       .map(function (c) {
         return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
       })
-      .join(""),
+      .join("")
   );
   return JSON.parse(jsonPayload);
 }
@@ -44,7 +44,7 @@ export const authSignUp = createAsyncThunk(
     } catch (error) {
       thunkAPI.rejectWithValue(error);
     }
-  },
+  }
 );
 
 export const authSignIn = createAsyncThunk(
@@ -69,26 +69,46 @@ export const authSignIn = createAsyncThunk(
     } catch (error) {
       thunkAPI.rejectWithValue(error);
     }
-  },
+  }
 );
 
-export const authExit = createAsyncThunk("auth/exit", async (data, thunkAPI) => {
-  try {
-    localStorage.removeItem("token");
-  } catch (error) {
-    thunkAPI.rejectWithValue(error);
+export const authExit = createAsyncThunk(
+  "auth/exit",
+  async (data, thunkAPI) => {
+    try {
+      localStorage.removeItem("token");
+    } catch (error) {
+      thunkAPI.rejectWithValue(error);
+    }
   }
-});
+);
 
-export const fetchUsers = createAsyncThunk("fetch/users", async (data, thunkAPI) => {
-  try {
-    const res = await fetch("http://localhost:4000/auth/users");
-    const users = await res.json();
-    return users;
-  } catch (error) {
-    thunkAPI.rejectWithValue(error);
+export const fetchUsers = createAsyncThunk(
+  "fetch/users",
+  async (data, thunkAPI) => {
+    try {
+      const res = await fetch("http://localhost:4000/auth/users");
+      const users = await res.json();
+      return users;
+    } catch (error) {
+      thunkAPI.rejectWithValue(error);
+    }
   }
-});
+);
+
+export const deleteUserByName = createAsyncThunk(
+  "delete/user",
+  async (username, thunkAPI) => {
+    try {
+      await fetch(`http://localhost:4000/auth/${username}`, {
+        method: "DELETE",
+      });
+      return username;
+    } catch (err) {
+      return thunkAPI.rejectWithValue(err);
+    }
+  }
+);
 
 const authSlice = createSlice({
   name: "auth",
@@ -117,6 +137,11 @@ const authSlice = createSlice({
     builder.addCase(authExit.fulfilled, (state) => {
       state.token = null;
       state.loginedUser = null;
+    });
+    builder.addCase(deleteUserByName.fulfilled, (state, action) => {
+      state.users = state.users.filter(
+        (user) => user.username !== action.payload
+      );
     });
   },
 });
