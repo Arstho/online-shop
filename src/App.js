@@ -31,7 +31,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/success" element={<Success />} />
             <Route path="/shop" element={<ShopPage />} />
-            <Route path="/:id" element={<OnePage />} />
+            <Route path="/el/:id" element={<OnePage />} />
             <Route path="/register" element={<Navigate to="/" />} />
             <Route path="/login" element={<Navigate to="/" />} />
             <Route path="/checkout" element={<Checkout />} />
@@ -44,7 +44,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/success" element={<Success />} />
             <Route path="/shop" element={<ShopPage />} />
-            <Route path="/el" element={<OnePage />} />
+            <Route path="/el/:id" element={<OnePage />} />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
             <Route path="/checkout" element={<Checkout />} />

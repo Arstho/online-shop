@@ -9,8 +9,18 @@ import quality2 from "..//..//assets/quality2.png";
 import quality3 from "..//..//assets/quality3.png";
 import imgTeam from "..//..//assets/fotksh.png";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchClothes } from "../../features/shopSlice";
 
 const Home = () => {
+  const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    dispatch(fetchClothes());
+  }, [dispatch]);
+
+  const clothes = useSelector((state) => state.clothes.clothes);
+
   return (
     <div className={styles.home}>
       <div className={styles.homeBlockTop}>
@@ -23,10 +33,12 @@ const Home = () => {
             этом сезоне. Время исследовать.
           </div>
           <div className={styles.topButton}>
-            <Link className={styles.topButton1} to={'/shop'}>
+            <Link className={styles.topButton1} to={"/shop"}>
               <img src={arrowDown} alt="arrow" />
             </Link>
-            <Link className={styles.topButton2} to={'/shop'}>Открыть магазин</Link>
+            <Link className={styles.topButton2} to={"/shop"}>
+              Открыть магазин
+            </Link>
           </div>
         </div>
         <div className={styles.topImage}>
@@ -36,27 +48,26 @@ const Home = () => {
         </div>
       </div>
       <div className={styles.homeBlockCollection}>
-        {/* !!!!!!!!!!переделать с данными с бэка  */}
         <div className={styles.collectionTitlle}>Новая коллекция</div>
         <div className={styles.collectionBlock}>
-          <div className={styles.collectionItem}>
-            <img src="" alt="" className={styles.collectionImage} />
-            <div className={styles.collectionName}>Футболка USA</div>
-            <div className={styles.collectionPrice}>$129</div>
-          </div>
-          <div className={styles.collectionItem}>
-            <img src="" alt="" className={styles.collectionImage} />
-            <div className={styles.collectionName}>Футболка USA</div>
-            <div className={styles.collectionPrice}>$129</div>
-          </div>
-          <div className={styles.collectionItem}>
-            <img src="" alt="" className={styles.collectionImage} />
-            <div className={styles.collectionName}>Футболка USA</div>
-            <div className={styles.collectionPrice}>$129</div>
-          </div>
+          {clothes.map((cloth, index) => {
+            return (
+              <div className={styles.collectionItem} key={index}>
+                <Link to={`/el/${cloth._id}`}><div className={styles.colletcionItemHover}></div></Link>
+                <img
+                  src={`http://localhost:4000/${cloth.image}`}
+                  alt=""
+                  className={styles.collectionImage}
+                />
+                <div className={styles.collectionName}>{cloth.name}</div>
+                <div className={styles.collectionPrice}>${cloth.price}</div>
+              </div>
+            );
+          })}
         </div>
-        {/* !!!!!!!!!!переделать с данными с бэка  */}
-        <button className={styles.collectionBtn}>Открыть магазин</button>
+        <Link to={'/shop'}>
+          <button className={styles.collectionBtn}>Открыть магазин</button>
+        </Link>
       </div>
       <div className={styles.homeBlockQuality}>
         <div className={styles.qualiteTitle}>Что для нас важно</div>
