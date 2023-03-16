@@ -97,6 +97,7 @@ const authSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(authSignUp.fulfilled, (state, action) => {
       state.token = action.payload.token;
+      state.loginedUser = parseJwt(state.token);
     });
     builder.addCase(authSignUp.rejected, (state, action) => {
       state.regMessage = action.payload.message;

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styles from "./CheckoutPage.module.scss";
 const Checkout = () => {
   return (
@@ -8,25 +9,25 @@ const Checkout = () => {
       <div className={styles.block}>
         <div className={styles.inputBlock}>
           <div className={styles.buyer}>
-        <p className={styles.user}>Данные покупателя</p>
+            <p className={styles.user}>Данные покупателя</p>
           </div>
           <div className={styles.inputs}>
-            <input type="text" placeholder="Имя"></input>
-            <input type="text" placeholder="E-mail"></input>
-            <input type="text" placeholder="Телефон"></input>
+            <input type='text' placeholder='Имя'></input>
+            <input type='text' placeholder='E-mail'></input>
+            <input type='text' placeholder='Телефон'></input>
           </div>
           <div className={styles.inputAddres}>
             <div className={styles.adress}>
-            <p>Адрес покупателя</p>
+              <p>Адрес покупателя</p>
             </div>
-            <input type="text" placeholder="Страна"></input>
-            <input type="text" placeholder="Город"></input>
-            <input type="text" placeholder="Улица"></input>
-            <input type="text" placeholder="Дом"></input>
-            <input type="text" placeholder="Квартира"></input>
+            <input type='text' placeholder='Страна'></input>
+            <input type='text' placeholder='Город'></input>
+            <input type='text' placeholder='Улица'></input>
+            <input type='text' placeholder='Дом'></input>
+            <input type='text' placeholder='Квартира'></input>
           </div>
-        <p  className={styles.comment}>Комментарии</p>
-        <textarea type="text" placeholder="Страна" className={styles.commentInput}></textarea>  
+          <p className={styles.comment}>Комментарии</p>
+          <textarea type='text' placeholder='Страна' className={styles.commentInput}></textarea>
         </div>
         <div className={styles.productBlock}>
           <p>Ваш заказ</p>
@@ -38,19 +39,21 @@ const Checkout = () => {
               <p>Подытог</p>
               <p className={styles.paragraf}>Итого</p>
               <div className={styles.payment}>
-              <p>Способ оплаты</p>
+                <p>Способ оплаты</p>
               </div>
-              <p className={styles.cash}>  Оплата наличными</p>
-              <button>Разместить заказ </button>
+              <p className={styles.cash}> Оплата наличными</p>
+              <Link to='/success'>
+                <button>Разместить заказ </button>
+              </Link>
             </div>
             <div className={styles.all}>
               <p>Всего</p>
-              <div className={styles.dollar}>  
-              <p>129$</p>
-              <p>129$</p>
+              <div className={styles.dollar}>
+                <p>129$</p>
+                <p>129$</p>
               </div>
               <p className={styles.paragraf2}>129$</p>
-            </div>         
+            </div>
           </div>
         </div>
       </div>
