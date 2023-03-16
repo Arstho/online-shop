@@ -92,19 +92,6 @@ p {
   margin: 10px 5px;
 }
 
-.amount {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: large;
-  width: 68px;
-  height: 68px;
-  border: 1px solid #AFAFAF;
-  flex: none;
-  order: 0;
-  flex-grow: 0;
-}
-
 .addToCart {
   width: 268px;
   height: 68px;
@@ -113,7 +100,6 @@ p {
   order: 1;
   flex-grow: 0;
   color: white;
-  margin-left: 15px;
 }
 
 h2 {

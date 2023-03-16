@@ -1,14 +1,14 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  clotnes: [],
+  clothes: [],
 };
 
-export const fetchClotnes = createAsyncThunk("fetch/shops", async (_, thunkAPI) => {
+const fetchClothes = createAsyncThunk("fetch/shops", async (_, thunkAPI) => {
   try {
-    const res = await fetch("http://localhost:4000/clotnes");
-    const clotnes = res.json();
-    return clotnes;
+    const res = await fetch("http://localhost:4000/clothes");
+    const clothes = res.json();
+    return clothes;
   } catch (error) {
     return error;
   }
@@ -43,10 +43,10 @@ export const deleteClotnes = createAsyncThunk(
   "delete/clotnes",
   async (id, thunkAPI) => {
     try {
-      const res = await fetch(`http://localhost:4000/clotnes/${id}`, {
+      const res = await fetch(`http://localhost:4000/clothes/${id}`, {
         method: "DELETE",
       });
-      return id;
+      return res.json();
     } catch (error) {
       return error;
     }
@@ -57,40 +57,40 @@ export const updateClotnes = createAsyncThunk(
   "updete/clotnes",
   async (id, thunkAPI) => {
     try {
-      const res = await fetch(`http://localhost:4000/clotnes/${id}`, {
+      const res = await fetch(`http://localhost:4000/clothes/${id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(),
       });
-      return id;
+      return res.json();
     } catch (error) {
       return error;
     }
   }
 );
 
-export const clotnesSlice = createSlice({
-  name: "clotnes",
+export const clothesSlice = createSlice({
+  name: "clothes",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(fetchClotnes.fulfilled, (state, action) => {
-      state.clotnes = action.payload;
+    builder.addCase(fetchClothes.fulfilled, (state, action) => {
+      state.clothes = action.payload;
     });
 
     builder.addCase(addClotnes.fulfilled, (state, action) => {
-      state.clotnes.push(action.payload);
+      state.clothes.push(action.payload);
       console.log(action.payload);
     });
 
-    builder.addCase(deleteClotnes.fulfilled, (state, action) => {
-      state.clotnes = state.clotnes.filter(
+    builder.addCase(deleteClothes.fulfilled, (state, action) => {
+      state.clothes = state.clothes.filter(
         (cart) => cart._id !== action.payload
       );
     });
   },
 });
 
-export default clotnesSlice.reducer;
+export default clothesSlice.reducer;
