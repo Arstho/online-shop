@@ -1,53 +1,51 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  clotnes: [],
+  clothes: [],
 };
 
-const fetchClotnes = createAsyncThunk("fetch/shops", async (_, thunkAPI) => {
+export const fetchClothes = createAsyncThunk("fetch/shops", async (_, thunkAPI) => {
   try {
-    const res = await fetch("http://localhost:4000/clotnes");
-    const clotnes = res.json();
-    return clotnes;
+    const res = await fetch("http://localhost:4000/clothes"); 
+    return res.json()
   } catch (error) {
     return error;
   }
 });
 
-const addClotnes = createAsyncThunk(
+const addClothes = createAsyncThunk(
   "add/clotnes",
-  async (clotnes, thunkAPI) => {
+  async (clothes, thunkAPI) => {
     try {
-      const res = await fetch("http://localhost:4000/clotnes", {
+      const res = await fetch("http://localhost:4000/clothes", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(clotnes),
+        body: JSON.stringify(clothes),
       });
-      const clotnes = res.json();
-      return clotnes;
+      return res.json()
     } catch (error) {
       return error;
     }
   }
 );
 
-const deleteClotnes = createAsyncThunk(
+const deleteClothes = createAsyncThunk(
   "delete/clotnes",
   async (id, thunkAPI) => {
     try {
       const res = await fetch(`http://localhost:4000/clotnes/${id}`, {
         method: "DELETE",
       });
-      return id;
+      return res.json()
     } catch (error) {
       return error;
     }
   }
 );
 
-const updateClotnes = createAsyncThunk(
+const updateClothes = createAsyncThunk(
   "updete/clotnes",
   async (id, thunkAPI) => {
     try {
@@ -58,31 +56,31 @@ const updateClotnes = createAsyncThunk(
         },
         body: JSON.stringify(),
       });
-      return id;
+      return res.json()
     } catch (error) {
       return error;
     }
   }
 );
 
-export const clotnesSlice = createSlice({
+export const clothesSlice = createSlice({
   name: "clotnes",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(fetchClotnes.fulfilled, (state, action) => {
-      state.clotnes = action.payload;
+    builder.addCase(fetchClothes.fulfilled, (state, action) => {
+      state.clothes = action.payload;
     });
 
-    builder.addCase(addClotnes.fulfilled, (state, action) => {
-      state.clotnes = push(action.payload);
+    builder.addCase(addClothes.fulfilled, (state, action) => {
+      state.clothes.push(action.payload);
     });
 
-    builder.addCase(deleteClotnes.fulfilled, (state,action)=>{
-        state.clotnes = state.clotnes.filter((cart) => cart._id !== action.payload)   
+    builder.addCase(deleteClothes.fulfilled, (state,action)=>{
+        state.clothes = state.clothes.filter((cart) => cart._id !== action.payload)   
     })
 
   },
 });
 
-export default clotnesSlice.reducer;  
+export default clothesSlice.reducer;  

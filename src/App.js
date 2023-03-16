@@ -23,10 +23,11 @@ function App() {
         <Header />
         <Routes>
           <Route path='/cart' element={<Cart />} />
-          <Route path='/contact' element={<ContactPage />} />
+          <Route path='/contact' element={<ContactPage />} />  
           <Route path='/' element={<Home />} />
           <Route path='/success' element={<Success />} />
-          <Route path='/shop' element={<ShopPage />} />
+          <Route path='/shop/:categoryId' element={<ShopPage />} />  
+          <Route path='/shop' element={<ShopPage />} />  
           <Route path='/el' element={<OnePage />} />
           <Route path='/register' element={<Register />} />
           <Route path='/login' element={<Login />} />
