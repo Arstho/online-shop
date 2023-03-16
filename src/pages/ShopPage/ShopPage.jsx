@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchClothes } from "../../features/shopSlice";
 import { fetchCategories } from "../../features/categorySlice";
 import { Link, NavLink, useParams } from "react-router-dom";
+import OnePage from "../OnePage/OnePage";
 
 const ShopPage = () => {
   const { categoryId } = useParams();
@@ -16,7 +17,7 @@ const ShopPage = () => {
       return elem.category === categoryId;  
     })
   );
-
+  
   const dispatch = useDispatch();
 
   useEffect(() => {

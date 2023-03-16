@@ -106,7 +106,12 @@ h2 {
   margin: 40px;
 }
 
-.similarGard {
+.contForSimilarCard {
+  display: flex;
+  justify-content: space-between;
+}
+
+.similarCard {
   display: flex;
   flex-direction: column;
   justify-content: center;
