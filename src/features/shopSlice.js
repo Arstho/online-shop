@@ -6,9 +6,8 @@ const initialState = {
 
 export const fetchClothes = createAsyncThunk("fetch/shops", async (_, thunkAPI) => {
   try {
-    const res = await fetch("http://localhost:4000/clothes");
-    const clothes = res.json();
-    return clothes;
+    const res = await fetch("http://localhost:4000/clothes"); 
+    return res.json()
   } catch (error) {
     return error;
   }

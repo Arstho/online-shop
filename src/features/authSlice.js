@@ -5,12 +5,12 @@ const initialState = {
   users: [],
   regMessage: null,
   logMessage: null,
-  token: localStorage.getItem("token"),
+  token: localStorage.getItem("token"),  
 };
 
 function parseJwt(token) {
   var base64Url = token.split(".")[1];
-  var base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+  var base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");  
   var jsonPayload = decodeURIComponent(
     atob(base64)
       .split("")

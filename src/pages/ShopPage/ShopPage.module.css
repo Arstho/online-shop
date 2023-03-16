@@ -44,7 +44,7 @@
   cursor: pointer;
 }
 
-#activeCategory button {
+.category_active button {
   color: #ffffff;
   background-color: #000000;
 }
