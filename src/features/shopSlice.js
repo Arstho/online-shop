@@ -4,7 +4,7 @@ const initialState = {
   clothes: [],
 };
 
-const fetchClothes = createAsyncThunk("fetch/shops", async (_, thunkAPI) => {
+export const fetchClothes = createAsyncThunk("fetch/shops", async (_, thunkAPI) => {
   try {
     const res = await fetch("http://localhost:4000/clothes");
     const clothes = res.json();
@@ -39,7 +39,7 @@ export const addClotnes = createAsyncThunk(
   }
 );
 
-export const deleteClotnes = createAsyncThunk(
+export const deleteClothes = createAsyncThunk(
   "delete/clotnes",
   async (id, thunkAPI) => {
     try {
@@ -82,7 +82,6 @@ export const clothesSlice = createSlice({
 
     builder.addCase(addClotnes.fulfilled, (state, action) => {
       state.clothes.push(action.payload);
-      console.log(action.payload);
     });
 
     builder.addCase(deleteClothes.fulfilled, (state, action) => {

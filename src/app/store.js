@@ -8,7 +8,7 @@ import cartSlice from "../features/cartSlice";
 export const store = configureStore({
   reducer: {
     categories: categoriesSlice,
-    clotnes: clothesSlice,
+    clothes: clothesSlice,
     authReducer,
     cart: cartSlice
   },
