@@ -14,16 +14,17 @@
     .chooseActionText {
       margin-bottom: 15px;
     }
-    .chooseAsctionButton {
+    .chooseActionButton {
       margin-right: 20px;
+      margin: 0 20px 20px 0;
     }
-    .addCategoryForm {
+    .actionForm {
       margin-top: 20px;
       .actionText {
         margin-bottom: 10px;
       }
-      .addCategoryButton {
-        margin-top: 20px;
+      .actionInput {
+        margin-bottom: 20px;
       }
       .categoriesList {
         margin: 10px 0 30px 0;
