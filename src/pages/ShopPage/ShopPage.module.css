@@ -66,6 +66,20 @@
   position: relative;
 }
 
+.colletcionItemHover {
+  position: absolute;
+  width: 100%;
+  height: 85%;
+  top: 0;
+  left: 0;
+}
+
+.colletcionItemHover:hover {
+  transition: 0.2s ease;
+  cursor: pointer;
+  background-color: rgba(110, 156, 159, 0.64);
+}
+
 .item_img {
   width: 350px;
   height: 478px;
