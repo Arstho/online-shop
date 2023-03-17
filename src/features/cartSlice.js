@@ -1,30 +1,42 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 const initialState = {
   items: [],
-  loading: false
+  loading: false,
 };
 
-export const fetchCart = createAsyncThunk("cart/fetchCart", async ({ data }, thunkAPI) => {
-  try {
-    const res = await fetch("http://localhost:4000/cart", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ data }),
-    });
-    const response = await res.json();
-    if (response.message) {
-      return thunkAPI.rejectWithValue(response);
+export const fetchCart = createAsyncThunk(
+  "cart/fetchCart",
+  async ({ data }, thunkAPI) => {
+    try {
+      const res = await fetch("http://localhost:4000/cart", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: data.get("name"),
+          size: data.get("size"),
+          price: data.get("price"),
+          total: data.get("total"),
+          count: data.get("count"),
+          color: data.get("color"),
+        }),
+      });
+      const response = await res.json();
+      console.log(response);
+      if (response.message) {
+        return thunkAPI.rejectWithValue(response);
+      }
+      return response;
+    } catch (err) {
+      return thunkAPI.rejectWithValue(err);
     }
-    return response
-  } catch (err) {
-    return thunkAPI.rejectWithValue(err);
   }
-});
+);
 
-export const getCart = createAsyncThunk("cart/getCart",
+export const getCart = createAsyncThunk(
+  "cart/getCart",
   async (id, thunkApi) => {
     try {
       const res = await fetch(`http://localhost:4000/cart/${id}`);
@@ -58,7 +70,7 @@ export const cartSlice = createSlice({
       })
       .addCase(fetchCart.fulfilled, (state, action) => {
         state.loading = false;
-        state.items.push(action.payload)
+        state.items.push(action.payload);
       })
       .addCase(fetchCart.rejected, (state) => {
         state.loading = false;
@@ -75,7 +87,7 @@ export const cartSlice = createSlice({
       })
       .addCase(getAllCarts.fulfilled, (state, action) => {
         state.items = action.payload;
-      })
+      });
   },
 });
 
