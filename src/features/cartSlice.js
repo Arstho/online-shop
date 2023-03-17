@@ -39,6 +39,7 @@ export const addItemToLocalStorage = createAsyncThunk(
   async ({ data }, thunkAPI) => {
     try {
       const response = await JSON.stringify({
+        image: data.get('image'),
         name: data.get("name"),
         size: data.get("size"),
         price: data.get("price"),
@@ -99,7 +100,7 @@ export const cartSlice = createSlice({
       })
       .addCase(addItemToLocalStorage.fulfilled, (state, action) => {
         state.items.push(action.payload);
-        localStorage.setItem("items", `"items": [${state.items}]`);
+        localStorage.setItem("items", `[${state.items}]`);
         // const testStr = localStorage.getItem("items");
         // console.log("testStr", testStr);
         // const parsedStr = JSON.parse(localStorage.getItem("items"));
