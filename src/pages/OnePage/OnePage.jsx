@@ -34,12 +34,11 @@ const OnePage = () => {
     try {
       const data = new FormData()
       data.append('name', thing.name)
-      data.append('count', thing.price * count)
+      data.append('count', count)
       data.append('price', thing.price)
       data.append('size', thing.sizes[sizeBtn])
       data.append('color', thing.color[colorBtn])
       data.append('total', thing.price * count)
-      console.log(data);
       dispatch(fetchCart({data}));
     } catch (error) {
       console.log(error)
