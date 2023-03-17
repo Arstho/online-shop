@@ -24,7 +24,29 @@ export const fetchCart = createAsyncThunk(
         }),
       });
       const response = await res.json();
-      console.log(response);
+      if (response.message) {
+        return thunkAPI.rejectWithValue(response);
+      }
+      return response;
+    } catch (err) {
+      return thunkAPI.rejectWithValue(err);
+    }
+  }
+);
+
+export const addItemToLocalStorage = createAsyncThunk(
+  "cart/addItemToLocalStorage",
+  async ({ data }, thunkAPI) => {
+    try {
+      const response = await JSON.stringify({
+        name: data.get("name"),
+        size: data.get("size"),
+        price: data.get("price"),
+        total: data.get("total"),
+        count: data.get("count"),
+        color: data.get("color"),
+      });
+      localStorage.setItem('items', [])
       if (response.message) {
         return thunkAPI.rejectWithValue(response);
       }
@@ -74,6 +96,14 @@ export const cartSlice = createSlice({
       })
       .addCase(fetchCart.rejected, (state) => {
         state.loading = false;
+      })
+      .addCase(addItemToLocalStorage.fulfilled, (state, action) => {
+        state.items.push(action.payload);
+        localStorage.setItem("items", `"items": [${state.items}]`);
+        // const testStr = localStorage.getItem("items");
+        // console.log("testStr", testStr);
+        // const parsedStr = JSON.parse(localStorage.getItem("items"));
+        // console.log("parsedStr", parsedStr);
       })
       .addCase(getCart.pending, (state) => {
         state.loading = true;
