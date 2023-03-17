@@ -50,7 +50,7 @@ const Home = () => {
       <div className={styles.homeBlockCollection}>
         <div className={styles.collectionTitlle}>Новая коллекция</div>
         <div className={styles.collectionBlock}>
-          {clothes.map((cloth, index) => {
+          {clothes.slice(0, 3).map((cloth, index) => {
             return (
               <div className={styles.collectionItem} key={index}>
                 <Link to={`/el/${cloth._id}`}><div className={styles.colletcionItemHover}></div></Link>

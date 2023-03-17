@@ -1,24 +1,22 @@
-import React from 'react'
+import React from "react";
 import { fetchClothes } from "../../features/shopSlice";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./OnePage.module.css";
-import { useParams } from "react-router-dom";
-import { fetchCart } from "../../features/cartSlice";
-
+import { Link, useParams } from "react-router-dom";
+import { addItemToLocalStorage, fetchCart } from "../../features/cartSlice";
 
 const OnePage = () => {
   const { id } = useParams();
-  const [sizeBtn, setSizeBtn] = React.useState('')
-  const [colorBtn, setColorBtn] = React.useState('')
-  const [count, setCount] = React.useState(1)
+  const [sizeBtn, setSizeBtn] = React.useState(0);
+  const [colorBtn, setColorBtn] = React.useState(0);
+  const [count, setCount] = React.useState(1);
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const thing = useSelector((state) =>
     state.clothes.clothes.find((elem) => {
       return elem._id === id;
     })
   );
-  
 
   const similarGoods = useSelector((state) =>
     state.clothes.clothes.filter((el) => {
@@ -27,43 +25,44 @@ const OnePage = () => {
   );
 
   React.useEffect(() => {
-    dispatch(fetchClothes())
-  }, [dispatch])
+    dispatch(fetchClothes());
+    window.scrollTo(0, 0);
+  }, [dispatch]);
 
   const submitHandler = () => {
     try {
-      const data = new FormData()
-      data.append('name', thing.name)
-      data.append('count', count)
-      data.append('price', thing.price)
-      data.append('size', thing.sizes[sizeBtn])
-      data.append('color', thing.color[colorBtn])
-      data.append('total', thing.price * count)
-      dispatch(fetchCart({data}));
+      const data = new FormData();
+      data.append("name", thing.name);
+      data.append("count", count);
+      data.append("price", thing.price);
+      data.append("size", thing.sizes[sizeBtn]);
+      data.append("color", thing.color[colorBtn]);
+      data.append("total", thing.price * count);
+      dispatch(addItemToLocalStorage({ data }));
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   const onClickChooseSize = (index) => {
-    setSizeBtn(index)
-  }
+    setSizeBtn(index);
+  };
 
   const onClickChooseColor = (index) => {
-    setColorBtn(index)
-  }
+    setColorBtn(index);
+  };
 
   if (!thing) {
-    return "loading"
+    return "loading";
   }
 
   const dec = () => {
-    setCount(count - 1)
-  }
+    setCount(count - 1);
+  };
 
   const inc = () => {
-    setCount(count + 1)
-  }
+    setCount(count + 1);
+  };
   return (
     <div className={styles.conteiner}>
       <h1>{thing.name}</h1>
@@ -77,44 +76,75 @@ const OnePage = () => {
         <p className={styles.fontP}>{thing.name}</p>
       </div>
       <div className={styles.item}>
-        <img className={styles.img} src={`http://localhost:4000/${thing.image}`} alt="" />
+        <img
+          className={styles.img}
+          src={`http://localhost:4000/${thing.image}`}
+          alt=""
+        />
         <div className={styles.info}>
           <span>{thing.price}$</span>
           <p>Выберите размер</p>
           <ul className={styles.addSize}>
             {thing.sizes.map((el, i) => (
-              <li key={i} onClick={() => onClickChooseSize(i)} className={sizeBtn === i ? styles.activeSize : ''}>{el}</li>
+              <li
+                key={i}
+                onClick={() => onClickChooseSize(i)}
+                className={sizeBtn === i ? styles.activeSize : ""}
+              >
+                {el}
+              </li>
             ))}
           </ul>
           <p>Выберите цвет</p>
           <ul className={styles.addColor}>
             {thing.color.map((el, i) => (
-              <li key={i} onClick={() => onClickChooseColor(i)} className={colorBtn === i ? styles.activeColor : ''}>{el}</li>
+              <li
+                key={i}
+                onClick={() => onClickChooseColor(i)}
+                className={colorBtn === i ? styles.activeColor : ""}
+              >
+                {el}
+              </li>
             ))}
           </ul>
           <div className={styles.amountAndAdd}>
             <div>
-              <button onClick={dec} className={styles.minus}>-</button>
+              <button onClick={dec} className={styles.minus}>
+                -
+              </button>
               <b className={styles.amount}>{count}</b>
-              <button onClick={inc} className={styles.plus}>+</button>
+              <button onClick={inc} className={styles.plus}>
+                +
+              </button>
             </div>
-            <button className={styles.addToCart} onClick={submitHandler}>Добавить в корзину</button>
+            <button className={styles.addToCart} onClick={submitHandler}>
+              Добавить в корзину
+            </button>
           </div>
         </div>
       </div>
-      <h2 >Связанные товары</h2>
+      <h2>Связанные товары</h2>
       <div className={styles.contForSimilarCard}>
         {similarGoods.map((item, i) => {
           if (item._id !== id) {
-            return <div key={i} className={styles.similarCard}>
-              <img className={styles.imgSimilarGoods} src={`http://localhost:4000/${item.image}`} alt="img" />
-              <h3>{item.name}</h3>
-              <p>{item.price}$</p>
-            </div>
+            return (
+              <Link to={`el/${item._id}`}>
+                <div key={i} className={styles.similarCard}>
+                  <img
+                    className={styles.imgSimilarGoods}
+                    src={`http://localhost:4000/${item.image}`}
+                    alt="img"
+                  />
+                  <h3>{item.name}</h3>
+                  <p>{item.price}$</p>
+                </div>
+              </Link>
+            );
           }
-        })}</div>
+        })}
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default OnePage
+export default OnePage;

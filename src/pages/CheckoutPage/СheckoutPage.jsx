@@ -36,7 +36,6 @@ const Checkout = () => {
             <div className={styles.product}>
               <p>Товар</p>
               <p>Футболка USA</p>
-              <p>Подытог</p>
               <p className={styles.paragraf}>Итого</p>
               <div className={styles.payment}>
                 <p>Способ оплаты</p>
@@ -49,7 +48,6 @@ const Checkout = () => {
             <div className={styles.all}>
               <p>Всего</p>
               <div className={styles.dollar}>
-                <p>129$</p>
                 <p>129$</p>
               </div>
               <p className={styles.paragraf2}>129$</p>
