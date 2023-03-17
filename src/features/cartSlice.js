@@ -5,32 +5,20 @@ const initialState = {
   loading: false
 };
 
-export const fetchCart = createAsyncThunk("cart/fetchCart", async ({
-  Name,
-  ItemImage,
-  ItemCount,
-  ItemPrice,
-  Total,
-  Discount }, thunkAPI) => {
+export const fetchCart = createAsyncThunk("cart/fetchCart", async ({ data }, thunkAPI) => {
   try {
     const res = await fetch("http://localhost:4000/cart", {
       method: "POST",
       headers: {
-        "Content-type": "application/json",
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        Name,
-        ItemImage,
-        ItemCount,
-        ItemPrice,
-        Total,
-        Discount
-      }),
+      body: JSON.stringify({ data }),
     });
-    const data = await res.json();
-    if (data.message) {
-      return thunkAPI.rejectWithValue(data);
+    const response = await res.json();
+    if (response.message) {
+      return thunkAPI.rejectWithValue(response);
     }
+    return response
   } catch (err) {
     return thunkAPI.rejectWithValue(err);
   }
@@ -40,6 +28,18 @@ export const getCart = createAsyncThunk("cart/getCart",
   async (id, thunkApi) => {
     try {
       const res = await fetch(`http://localhost:4000/cart/${id}`);
+      return res.json();
+    } catch (err) {
+      return thunkApi.rejectWithValue(err);
+    }
+  }
+);
+
+export const getAllCarts = createAsyncThunk(
+  "cart/getAllCarts",
+  async (_, thunkApi) => {
+    try {
+      const res = await fetch("http://localhost:4000/cart");
       return res.json();
     } catch (err) {
       return thunkApi.rejectWithValue(err);
@@ -58,7 +58,7 @@ export const cartSlice = createSlice({
       })
       .addCase(fetchCart.fulfilled, (state, action) => {
         state.loading = false;
-        state.items = action.payload;
+        state.items.push(action.payload)
       })
       .addCase(fetchCart.rejected, (state) => {
         state.loading = false;
@@ -72,6 +72,9 @@ export const cartSlice = createSlice({
       })
       .addCase(getCart.rejected, (state) => {
         state.loading = false;
+      })
+      .addCase(getAllCarts.fulfilled, (state, action) => {
+        state.items = action.payload;
       })
   },
 });

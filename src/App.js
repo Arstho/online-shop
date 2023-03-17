@@ -26,7 +26,7 @@ function App() {
       <div className="App_wrapper">
         {token ? (
           <Routes>
-            <Route path="/cart" element={<Cart />} />
+            <Route path="/cart/:userId" element={<Cart />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/" element={<Home />} />
             <Route path="/success" element={<Success />} />
@@ -40,7 +40,7 @@ function App() {
           </Routes>
         ) : (
           <Routes>
-            <Route path="/cart" element={<Cart />} />
+            <Route path="/cart/:userId" element={<Cart />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/" element={<Home />} />
             <Route path="/success" element={<Success />} />

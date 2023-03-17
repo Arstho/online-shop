@@ -16,7 +16,7 @@ const ShopPage = () => {
       return elem.category === categoryId;
     })
   );
-
+  
   const dispatch = useDispatch();
 
   useEffect(() => {
