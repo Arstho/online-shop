@@ -99,3 +99,7 @@
   margin: 10px;
 
 }
+
+table {
+  border-spacing: 0 1em;
+}

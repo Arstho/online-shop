@@ -32,6 +32,7 @@ const OnePage = () => {
   const submitHandler = () => {
     try {
       const data = new FormData();
+      data.append('image', thing.image)
       data.append("name", thing.name);
       data.append("count", count);
       data.append("price", thing.price);
@@ -109,7 +110,7 @@ const OnePage = () => {
           </ul>
           <div className={styles.amountAndAdd}>
             <div>
-              <button onClick={dec} className={styles.minus}>
+              <button onClick={dec} className={styles.minus} disabled={count === 1}>
                 -
               </button>
               <b className={styles.amount}>{count}</b>
