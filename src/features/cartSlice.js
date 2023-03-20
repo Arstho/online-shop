@@ -16,13 +16,16 @@ export const fetchCart = createAsyncThunk(
         },
         body: JSON.stringify({
           name: data.get("name"),
-          size: data.get("size"),
-          price: data.get("price"),
-          total: data.get("total"),
-          count: data.get("count"),
-          color: data.get("color"),
+          email: data.get('email'),
+          number: data.get('number'),
+          country: data.get('country'),
+          citi: data.get('citi'),
+          street: data.get('street'),
+          home: data.get('home'),
+          flat: data.get('flat'),
+          localStorageItems: data.get('localStorageItems')
         }),
-      });
+    });
       const response = await res.json();
       if (response.message) {
         return thunkAPI.rejectWithValue(response);
@@ -94,6 +97,7 @@ export const cartSlice = createSlice({
       .addCase(fetchCart.fulfilled, (state, action) => {
         state.loading = false;
         state.items.push(action.payload);
+        localStorage.removeItem('items')
       })
       .addCase(fetchCart.rejected, (state) => {
         state.loading = false;
